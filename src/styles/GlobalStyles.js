@@ -32,11 +32,13 @@ time, mark, audio, video {
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
+  box-sizing: border-box;
 }
 body {
 	line-height: 1;
   width: 100vw;
   height: 100vh;
+  background-color: var(--Grey-4);
 }
 ol, ul {
 	list-style: none;
@@ -55,6 +57,10 @@ table {
 }
 button{
   cursor: pointer;
+  transition: 0.7s;
+}
+a{
+  transition: 0.7s;
 }
 main{
   height: 100%;
