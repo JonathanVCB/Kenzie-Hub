@@ -6,20 +6,24 @@ const HomePage = ({ user }) => {
   const token = localStorage.getItem("@KenzieHub:token");
   const navigate = useNavigate();
 
-  console.log(user);
-
   if (!token) {
     navigate("/login");
   }
+  function Clear() {
+    window.localStorage.clear();
+  }
+
   return (
     <>
       <Header>
         <img src={logo} alt="logo" />
-        <Link to="/login">Sair</Link>
+        <Link onClick={Clear} to="/login">
+          Sair
+        </Link>
       </Header>
       <DivBio>
-        <h1>Olá, {user.name}</h1>
-        <p>{user.course_module}</p>
+        <h1>Olá, {user.user.name}</h1>
+        <p>{user.user.course_module}</p>
       </DivBio>
       <DivMessage>
         <h2>Que pena! Estamos em desenvolvimento :(</h2>

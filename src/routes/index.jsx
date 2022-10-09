@@ -7,7 +7,10 @@ const MainRoutes = ({ user, setUser }) => {
   return (
     <Routes>
       <Route path="/" element={<LoginPage setUser={setUser} />} />
-      <Route path="/login" element={<LoginPage setUser={setUser} />} />
+      <Route
+        path="/login"
+        element={<LoginPage setUser={setUser} user={user} />}
+      />
       <Route path="/home" element={<HomePage user={user} />} />
       <Route path="/register" element={<RegisterPage />} />
     </Routes>

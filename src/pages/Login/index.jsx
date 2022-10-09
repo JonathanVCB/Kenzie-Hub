@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { api } from "../../services/axios";
 import { toast } from "react-toastify";
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = ({ setUser, user }) => {
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
