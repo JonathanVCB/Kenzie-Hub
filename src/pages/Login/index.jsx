@@ -13,13 +13,7 @@ const LoginPage = ({ setUser, user }) => {
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup
-      .string()
-      .required("Senha obrigatória")
-      .matches(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
-        "Deve conter 8 digitos, 1 Letra maiuscula, 1 numero e 1 caracter especial"
-      ),
+    password: yup.string().required("Senha obrigatória"),
   });
   const {
     register,
