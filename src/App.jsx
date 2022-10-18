@@ -3,11 +3,10 @@ import MainRoutes from "./routes";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+
+import AuthProvider from "./contexts/AuthContext";
 
 function App() {
-  const [user, setUser] = useState({});
-
   return (
     <>
       <ToastContainer
@@ -21,7 +20,9 @@ function App() {
         draggable
         pauseOnHover
       />
-      <MainRoutes user={user} setUser={setUser} />
+      <AuthProvider>
+        <MainRoutes />
+      </AuthProvider>
     </>
   );
 }

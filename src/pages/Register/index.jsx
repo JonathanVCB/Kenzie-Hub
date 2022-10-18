@@ -1,15 +1,15 @@
 import { DivBack, MainReg, SectionRegister } from "./style";
 import logo from "../../assets/Logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Form } from "../../components/Form/style";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { api } from "../../services/axios";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const RegisterPage = () => {
-  const navigate = useNavigate();
+  const { RegisterUser } = useContext(AuthContext);
 
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório"),
@@ -34,23 +34,6 @@ const RegisterPage = () => {
   } = useForm({
     resolver: yupResolver(formSchema),
   });
-
-  function RegisterUser(data) {
-    console.log(data);
-    api
-      .post("users", data)
-      .then((res) => {
-        console.log(res.data);
-        window.localStorage.clear();
-        window.localStorage.setItem("@KenzieHub:id", res.data.id);
-        toast.success("Registrado com sucesso");
-        navigate("/login");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Algo deu errado");
-      });
-  }
 
   return (
     <SectionRegister>

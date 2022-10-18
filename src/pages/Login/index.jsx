@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/Logo.png";
 import { Form } from "../../components/Form/style";
 import { DivGoRegister, DivImage, Main, SectionLogin } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { api } from "../../services/axios";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginPage = ({ setUser, user }) => {
-  const navigate = useNavigate();
+  const { Login } = useContext(AuthContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),
@@ -23,21 +23,6 @@ const LoginPage = ({ setUser, user }) => {
     resolver: yupResolver(formSchema),
   });
 
-  function Login(data) {
-    api
-      .post("sessions", data)
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data);
-        window.localStorage.setItem("@KenzieHub:token", res.data.token);
-        toast.success("Logado com sucesso");
-        navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Algo deu errado");
-      });
-  }
   return (
     <SectionLogin>
       <DivImage>
