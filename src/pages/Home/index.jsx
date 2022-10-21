@@ -1,17 +1,14 @@
 import logo from "../../assets/Logo.png";
-import { Link, Navigate } from "react-router-dom";
-import { DivBio, DivMessage, Header } from "./style";
+import { Link } from "react-router-dom";
+import { DivBio, DivAdd, Header, MainContain, ListTechs } from "./style";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/UserContext";
+import add from "../../assets/ButtonAdd.png";
+import CardTech from "../../components/CardTechs";
+import ModalAddTech from "../../components/Modal";
 
 const HomePage = () => {
-  const { user, loading } = useContext(AuthContext);
-
-  console.log(user);
-
-  if (loading) {
-    return null;
-  }
+  const { user, techs, showModal, ModalShow } = useContext(AuthContext);
 
   function Clear() {
     window.localStorage.clear();
@@ -19,29 +16,30 @@ const HomePage = () => {
 
   return (
     <>
-      {user ? (
-        <>
-          <Header>
-            <img src={logo} alt="logo" />
-            <Link onClick={Clear} to="/login">
-              Sair
-            </Link>
-          </Header>
-          <DivBio>
-            <h1>Olá, {user.name}</h1>
-            <p>{user.course_module}</p>
-          </DivBio>
-          <DivMessage>
-            <h2>Que pena! Estamos em desenvolvimento :(</h2>
-            <p>
-              Nossa aplicação está em desenvolvimento, em breve teremos
-              novidades
-            </p>
-          </DivMessage>
-        </>
-      ) : (
-        <Navigate to="/" replace />
-      )}
+      <Header>
+        <img src={logo} alt="logo" />
+        <Link onClick={Clear} to="/login">
+          Sair
+        </Link>
+      </Header>
+      <DivBio>
+        <h1>Olá, {user.name}</h1>
+        <p>{user.course_module}</p>
+      </DivBio>
+      <DivAdd>
+        <h2>Tecnologias</h2>
+        <button onClick={ModalShow}>
+          <img src={add} alt="adcionar" />
+        </button>
+      </DivAdd>
+      <MainContain>
+        <ListTechs>
+          {techs?.map((tech) => (
+            <CardTech key={tech.id} tech={tech} />
+          ))}
+        </ListTechs>
+        {showModal && <ModalAddTech />}
+      </MainContain>
     </>
   );
 };

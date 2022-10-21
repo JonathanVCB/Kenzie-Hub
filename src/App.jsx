@@ -4,7 +4,8 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import AuthProvider from "./contexts/AuthContext";
+import UserProvider from "./contexts/UserContext";
+import TechsProvider from "./contexts/TechContext";
 
 function App() {
   return (
@@ -20,9 +21,11 @@ function App() {
         draggable
         pauseOnHover
       />
-      <AuthProvider>
-        <MainRoutes />
-      </AuthProvider>
+      <UserProvider>
+        <TechsProvider>
+          <MainRoutes />
+        </TechsProvider>
+      </UserProvider>
     </>
   );
 }

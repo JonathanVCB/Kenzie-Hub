@@ -7,7 +7,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem;
+  padding: 2rem;
 
   > img {
     object-fit: contain;
@@ -39,7 +39,8 @@ export const DivBio = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  padding: 0 2rem;
+  padding: 2rem;
+
   > h1 {
     font-size: 1.125rem;
     font-weight: 700;
@@ -58,11 +59,13 @@ export const DivBio = styled.div`
     align-items: center;
   }
 `;
-export const DivMessage = styled.div`
+export const DivAdd = styled.div`
   width: 100%;
-  padding: 2rem 2rem 0 2rem;
+  margin-top: 2rem;
+  padding: 2rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 2rem;
 
   > h2 {
@@ -70,12 +73,41 @@ export const DivMessage = styled.div`
     font-weight: 700;
     color: var(--Grey-0);
   }
-  > p {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #fff;
+  > button {
+    background-color: var(--Grey-3);
+    border: none;
+    transition: 0.7s;
+
+    width: 32px;
+    height: 32px;
+  }
+  > button:hover {
+    background-color: var(--Grey-2);
+  }
+  > button > img {
+    object-fit: contain;
   }
   @media (min-width: 1024px) {
-    padding: 2rem 25%;
+    padding: 0 25%;
   }
+`;
+
+export const MainContain = styled.main`
+  height: 50%;
+  margin-top: 1rem;
+  padding: 2rem;
+  @media (min-width: 1024px) {
+    padding: 0 25%;
+  }
+`;
+
+export const ListTechs = styled.ul`
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--Grey-3);
+  padding: 0.8rem;
 `;

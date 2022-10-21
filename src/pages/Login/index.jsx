@@ -6,9 +6,9 @@ import { DivGoRegister, DivImage, Main, SectionLogin } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../contexts/UserContext";
 
-const LoginPage = ({ setUser, user }) => {
+const LoginPage = () => {
   const { Login } = useContext(AuthContext);
 
   const formSchema = yup.object().shape({
