@@ -9,7 +9,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
-  const { Login } = useContext(AuthContext);
+  const { Login, isLogged } = useContext(AuthContext);
+
+  isLogged();
 
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigatório").email("Email inválido"),

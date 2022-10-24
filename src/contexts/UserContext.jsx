@@ -36,6 +36,13 @@ function UserProvider({ children }) {
     LoadUser();
   }, [techLoading]);
 
+  function isLogged() {
+    const token = localStorage.getItem("@KenzieHub:token");
+    if (token) {
+      navigate("/home", { replace: true });
+    }
+  }
+
   async function Login(data) {
     try {
       const response = await api.post("sessions", data);
@@ -90,6 +97,7 @@ function UserProvider({ children }) {
         ModalShow,
         CloseModal,
         setTechLoading,
+        isLogged,
       }}
     >
       {children}
