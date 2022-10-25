@@ -6,7 +6,7 @@ import { DivGoRegister, DivImage, Main, SectionLogin } from "./style";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/UserContext";
+import { AuthContext, iLoginProps } from "../../contexts/UserContext";
 
 const LoginPage = () => {
   const { Login, isLogged } = useContext(AuthContext);
@@ -21,7 +21,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iLoginProps>({
     resolver: yupResolver(formSchema),
   });
 
