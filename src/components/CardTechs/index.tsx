@@ -2,8 +2,13 @@ import { Card, DivDelete } from "./style";
 import del from "../../assets/delete.png";
 import { useContext } from "react";
 import { TechsContext } from "../../contexts/TechContext";
+import { iTechs } from "../../contexts/UserContext";
 
-const CardTech = ({ tech }) => {
+interface CardTechProps {
+  tech: iTechs;
+}
+
+const CardTech = ({ tech }: CardTechProps) => {
   const { DeleteTech } = useContext(TechsContext);
 
   return (

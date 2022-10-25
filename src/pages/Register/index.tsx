@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useContext } from "react";
-import { AuthContext } from "../../contexts/UserContext";
+import { AuthContext, iRegisterProps } from "../../contexts/UserContext";
 
 const RegisterPage = () => {
   const { RegisterUser } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const RegisterPage = () => {
       .string()
       .required("Senha obrigatória")
       .matches(
-        "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$",
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
         "Deve conter 8 digitos, 1 Letra maiuscula, 1 numero e 1 caracter especial"
       ),
     confirmPassword: yup.string().required("Confirmar senha obrigatória"),
@@ -31,7 +31,7 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iRegisterProps>({
     resolver: yupResolver(formSchema),
   });
 
@@ -102,7 +102,7 @@ const RegisterPage = () => {
           {errors.contact && <span>{errors.contact.message}</span>}
 
           <label htmlFor="module">Selecionar módulo</label>
-          <select name="module" id="module" {...register("course_module")}>
+          <select id="module" {...register("course_module")}>
             <option value="Primeiro Módulo">Primeiro Módulo</option>
             <option value="Segundo Módulo">Segundo Módulo</option>
             <option value="Terceiro Módulo">Terceiro Módulo</option>

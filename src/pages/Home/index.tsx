@@ -10,7 +10,7 @@ import ModalAddTech from "../../components/Modal";
 const HomePage = () => {
   const { user, techs, showModal, ModalShow } = useContext(AuthContext);
 
-  function Clear() {
+  function Clear(): void {
     window.localStorage.clear();
   }
 
@@ -23,8 +23,8 @@ const HomePage = () => {
         </Link>
       </Header>
       <DivBio>
-        <h1>Olá, {user.name}</h1>
-        <p>{user.course_module}</p>
+        <h1>Olá, {user?.name}</h1>
+        <p>{user?.course_module}</p>
       </DivBio>
       <DivAdd>
         <h2>Tecnologias</h2>

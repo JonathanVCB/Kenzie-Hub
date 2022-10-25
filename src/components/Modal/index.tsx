@@ -2,7 +2,7 @@ import { DivContainer, FormModal, HeaderModal, SectionModal } from "./style";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { TechsContext } from "../../contexts/TechContext";
+import { iRegisterTechProps, TechsContext } from "../../contexts/TechContext";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/UserContext";
 
@@ -18,7 +18,7 @@ const ModalAddTech = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iRegisterTechProps>({
     resolver: yupResolver(formSchema),
   });
 
@@ -38,9 +38,8 @@ const ModalAddTech = () => {
             {...register("title")}
           />
           {errors.title && <span>{errors.title.message}</span>}
-
           <label htmlFor="status">Selecionar status</label>
-          <select name="status" id="status" {...register("status")}>
+          <select id="status" {...register("status")}>
             <option value="Iniciante">Iniciante</option>
             <option value="INtermediário">INtermediário</option>
             <option value="Avançado">Avançado</option>

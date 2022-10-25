@@ -1,14 +1,27 @@
-import { createContext, useContext } from "react";
+import { createContext, ReactNode, useContext } from "react";
 import { api } from "../services/axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "./UserContext";
 
-export const TechsContext = createContext({});
+export const TechsContext = createContext<iTechsValues>({} as iTechsValues);
 
-function TechsProvider({ children }) {
+interface iTechsProviderProps {
+  children: ReactNode;
+}
+
+export interface iRegisterTechProps {
+  title: string;
+  status: string;
+}
+interface iTechsValues {
+  RegisterTech: (data: iRegisterTechProps) => void;
+  DeleteTech: (id: string) => void;
+}
+
+function TechsProvider({ children }: iTechsProviderProps) {
   const { setTechLoading, CloseModal } = useContext(AuthContext);
 
-  async function RegisterTech(data) {
+  async function RegisterTech(data: iRegisterTechProps): Promise<void> {
     try {
       await api.post("users/techs", data);
       toast.success("Registrado com sucesso");
@@ -21,7 +34,7 @@ function TechsProvider({ children }) {
     }
   }
 
-  async function DeleteTech(id) {
+  async function DeleteTech(id: string): Promise<void> {
     try {
       await api.delete(`users/techs/${id}`);
       toast.success("Deletado com sucesso");
